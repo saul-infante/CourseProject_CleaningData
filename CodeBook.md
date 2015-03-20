@@ -9,7 +9,14 @@ The measurement data was provided for 2 data sets (test and train) the data for 
 
 Once that information was available the activity type needed to be decode since it was represented with an integer number from 1 to 6 . For that purpose the file with the activities label was loaded and integer values for activities were replaced with descriptive text (Walking, Sitting, etc.)
 
-The names of the measurements had to be cleaned up as well. The names of all measurements were provided in a file but this file contained typos and characters that were not suitable to be used on the r programming language (parenthesis, commas, etc.) Using search and replace combined with the a function in R that translates any character string into suitable R names the names of the measurements were cleaned
+The names of the measurements had to be cleaned up as well. The names of all measurements were provided in a file but this file contained typos and characters that were not suitable to be used on the r programming language (parenthesis, commas, etc.) Using search and replace combined with the a function in R that translates any character string into suitable R names the names of the measurements were cleaned.
+
+After that all the measurements that were of no interest for this exercise were removed. Only measurements that involved a standard deviation or a mean were preserved.
+
+Finally, once this core set of data was ready the data was manipulated the data  was grouped by Subject and Activity. The mathematical funtion applied to allow this grouping was the mean. It is important to noe that because of this grouping all measurements that are produced in the final output of this script are the mean of several values. For example the variable tBodyAcc.mean.X
+reported for subject 1 for walking. Its the mean of all observations of tBodyAcc.mean.X for subject 1 while walking. In other words is the mean of a mean. This is similar to std measure like tBodyAcc.std.X where the measure reported is the mean of all std for a particular subject and activity.
+
+
 
 Output Data:
 The script produces the following columns in the oder they are described 
