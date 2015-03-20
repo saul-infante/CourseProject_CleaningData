@@ -12,7 +12,7 @@ library(reshape2)
 #Load data common to both data sets
 
 #Load description of each one of the measures collected
-features<-read.table("UCI HAR Dataset/features.txt", colClasses = "character" )
+features<-read.table("features.txt", colClasses = "character" )
 
 #Cleanup the names of the features remove parenthesis and other characters
 features[,2]<-gsub("\\(","",features[,2], perl=TRUE)
@@ -26,7 +26,7 @@ features[,2]<-make.names(features[,2], unique=TRUE)
 # Load Train Data
 
 #Load measures collected from the train data set
-xtrain<-read.table("UCI HAR Dataset/train/X_train.txt")
+xtrain<-read.table("X_train.txt")
 
 #USe the names just loaded to name each of the columns on the measures dataset
 names(xtrain)<- features[,2]
@@ -35,7 +35,7 @@ names(xtrain)<- features[,2]
 xtrain$id<- seq(1,nrow(xtrain),by=1)
 
 #Load subject information relating each set of measures collected to an specific individual
-subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
+subject_train <- read.table("subject_train.txt")
 
 #Rename columns to give it a meaninful name
 colnames(subject_train)[1]<-"subjects"
@@ -44,7 +44,7 @@ colnames(subject_train)[1]<-"subjects"
 subject_train$id<- seq(1,nrow(subject_train),by=1)
 
 #Load data identifying the type of activity the subject was performing when the measures were captured
-y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
+y_train <- read.table("y_train.txt")
 
 #Rename column to give it a meaninful name
 colnames(y_train)[1]<-"activities"
@@ -62,7 +62,7 @@ all_data_train <- join_all(dfList)
 #Load Test Data
 
 #Load measures collected from the test data set
-xtest<-read.table("UCI HAR Dataset/test/X_test.txt")
+xtest<-read.table("X_test.txt")
 
 #USe the names just loaded to name each of the columns on the measures dataset
 names(xtest)<- features[,2]
@@ -72,7 +72,7 @@ names(xtest)<- features[,2]
 xtest$id<- seq(1,nrow(xtest),by=1)
 
 #Load subject information relating each set of measures collected to an specific individual
-subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
+subject_test <- read.table("subject_test.txt")
 
 #Rename columns to give it a meaninful name
 colnames(subject_test)[1]<-"subjects"
@@ -81,7 +81,7 @@ colnames(subject_test)[1]<-"subjects"
 subject_test$id<- seq(1,nrow(subject_test),by=1)
 
 #Load data identifying the type of activity the subject was performing when the measures were captured
-y_test <- read.table("UCI HAR Dataset/test/y_test.txt")
+y_test <- read.table("y_test.txt")
 
 
 #Rename column to give it a meaninful name
@@ -112,7 +112,7 @@ all_melt<-melt(mean_std_data,id=c("subjects","activities"))
 tidy_data<-dcast(all_melt, subjects + activities ~ variable, mean)
 
 #Load descrptive names for activities
-activity_names <- features<-read.table("UCI HAR Dataset/activity_labels.txt", colClasses = "character" )
+activity_names <- features<-read.table("activity_labels.txt", colClasses = "character" )
 
 #Rename columns for clarity and to allow join to decode activities
 colnames(activity_names)[1]<-"activities"
@@ -128,4 +128,4 @@ new_tidy_data<-new_tidy_data[c(1,82,3:81)]
 
 
 # Write output of script as text file
-write.table(new_tidy_data,file="tidydata2.txt",row.names=FALSE)
+write.table(new_tidy_data,file="tidydata.txt",row.names=FALSE)
