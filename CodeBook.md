@@ -16,7 +16,9 @@ After that all the measurements that were of no interest for this exercise were 
 Finally, once this core set of data was ready the data was manipulated the data  was grouped by Subject and Activity. The mathematical funtion applied to allow this grouping was the mean. It is important to noe that because of this grouping all measurements that are produced in the final output of this script are the mean of several values. For example the variable tBodyAcc.mean.X
 reported for subject 1 for walking. Its the mean of all observations of tBodyAcc.mean.X for subject 1 while walking. In other words is the mean of a mean. This is similar to std measure like tBodyAcc.std.X where the measure reported is the mean of all std for a particular subject and activity.
 
-
+Units of measures:
+All acelerations are expressed in standard gravity units of mesure (g)
+All angular velocities are expressed on radians per second
 
 Output Data:
 The script produces the following columns in the oder they are described 
